@@ -1,14 +1,11 @@
 package com.common.utility;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +28,7 @@ public class DatabaseUtility extends BaseTestSetup {
     	databaseType = configDataList.get(ConfigConstant.DATABASENAME).toString();
     }
 
+	@SuppressWarnings("static-access")
 	public Connection getDBConnection(String databaseType) {
 		this.databaseType = databaseType;
 

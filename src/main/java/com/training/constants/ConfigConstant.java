@@ -23,6 +23,7 @@ public class ConfigConstant {
 	public static String USERNAME = "userName";
 	public static String PASSWORD = "password";
 	public static String DATABASENAME = "databaseName";
+	public static String TESTDATASHEETNAME = "testDataSheetName";
 	public static String CLIENTLOGO = "clientLogo";
 	public static String TESTTYPE = "strTestType";
 	public static String BROWSERTYPE = "browserType";
