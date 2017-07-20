@@ -18,11 +18,9 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import org.testng.internal.TestResult;
 
 import com.common.utility.DatabaseUtility;
-import com.training.constants.ConfigConstant;
 import com.training.webdriverhelper.BaseTestSetup;
 
 public class MouseAndKeyboardActionsTest extends BaseTestSetup {
@@ -41,7 +39,7 @@ public class MouseAndKeyboardActionsTest extends BaseTestSetup {
 		
 		driver = new FirefoxDriver();
 		
-		/*System.setProperty("webdriver.chrome.driver", "./WebDrivers/chromedriver.exe");
+		/*System.setProperty("webdriver.chrome.driver", "./lib/chromedriver.exe");
 		driver = new ChromeDriver();*/
 		
 		action = new Actions(driver);
@@ -87,7 +85,7 @@ public class MouseAndKeyboardActionsTest extends BaseTestSetup {
 		driver.findElement(By.xpath("//a[text()=\"Signup\"]/../../../../fieldset/input[@name='username']")).sendKeys("manjeetku");
 		driver.findElement(By.cssSelector("#login>form>fieldset:nth-of-type(2)>input[type$=\"password\"]")).sendKeys("8885522072");
 		
-		driver.findElement(By.xpath("//a[text()=\"Signup\"]/../../../../div/div/input[@value=\"Submit\"]")).click();
+		element = driver.findElement(By.xpath("//a[text()=\"Signup\"]/../../../../div/div/input[@value=\"Submit\"]"));
 		Thread.sleep(3000);
 		
 		action.clickAndHold(element).perform();
@@ -311,30 +309,36 @@ public class MouseAndKeyboardActionsTest extends BaseTestSetup {
 		Thread.sleep(3000);
 	}
 	
-	@Test()
+	//@Test()
 	public void mouseAndKeyBoardActions_TakeScreenShot() throws InterruptedException, IOException {
 
 		login();
 
-		try {
-			databaseUtility = new DatabaseUtility();
-			
-			databaseUtility.getDBConnection(databaseUtility.databaseType);
-			
-			databaseUtility.executeQuery("SELECT NAME FROM employee WHERE id = 100;");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		int testResult = TestResult.SUCCESS;
+		int testResult = TestResult.FAILURE;
 
-		if (testResult == 1) {
+		if (testResult < 1 || testResult == 0) {
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(scrFile, new File("./takenScreenShots/screenshot.png"));
 		}
 	}
+	
+	
+	// @Test()
+	@SuppressWarnings("static-access")
+	public void mouseAndKeyBoardActions_ConnectToDB() throws InterruptedException, IOException {
+
+		try {
+			databaseUtility = new DatabaseUtility();
+
+			databaseUtility.getDBConnection(databaseUtility.databaseType);
+
+			databaseUtility.executeQuery("SELECT NAME FROM employee WHERE id = 100;");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	/**
 	 * Login Method

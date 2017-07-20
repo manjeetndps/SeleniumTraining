@@ -82,7 +82,7 @@ public class BaseTestSetup {
 	{
 		if (driver != null){
 			logger.info("Execution is completed. Closing the web driver now!");
-			driver.quit();
+			driver.close();
 		}
 	}
 }

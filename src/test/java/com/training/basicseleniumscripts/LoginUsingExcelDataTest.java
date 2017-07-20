@@ -5,25 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.common.utility.DatabaseUtility;
 import com.training.constants.ConfigConstant;
 import com.training.fileparser.ExcelFileReader;
 import com.training.webdriverhelper.BaseTestSetup;
 
 public class LoginUsingExcelDataTest extends BaseTestSetup {
-
-	//private WebDriver driver;
-	private Actions action;
-	private WebElement element;
 
 	public ArrayList<?> tabs;
 	Map<String, String> columnData = new HashMap<String,String>();;
