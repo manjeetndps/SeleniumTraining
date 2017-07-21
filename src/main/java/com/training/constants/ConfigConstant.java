@@ -19,6 +19,7 @@ public class ConfigConstant {
 	// Data from property configuration file.
 	
 	public static String APPURL = "appURL";
+	public static String RETRYFAILEDTEST = "retryFailedTest";
 	public static String APPNAME = "appName";
 	public static String USERNAME = "userName";
 	public static String PASSWORD = "password";

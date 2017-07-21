@@ -6,17 +6,20 @@ import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import com.common.reruntestutils.RerunFailedTestSuite;
 import com.training.constants.ConfigConstant;
 import com.training.webdriverhelper.BaseTestSetup;
+import com.training.webdriverhelper.DriverUtility;
 
 
 
 
-public class DemoListener implements ITestListener, ISuiteListener {
+public class DemoListener extends DriverUtility implements ITestListener, ISuiteListener {
 
 	// This belongs to ISuiteListener and will execute before the Suite start
 
-
+	public static int count = 2;
 	ReportUtils report=new ReportUtils();
 	
 	@Override
@@ -52,7 +55,12 @@ public class DemoListener implements ITestListener, ISuiteListener {
 
 	public void onTestFailure(ITestResult arg0) {
 
-		report.fGenerateExcelReport(arg0);
+		while (count < 3) {
+			getWebDriver().close();
+			count++;
+			report.fGenerateExcelReport(arg0);
+			RerunFailedTestSuite.runFailedTest();
+		}
 
 	}
 

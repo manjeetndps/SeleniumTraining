@@ -20,7 +20,7 @@ public class BasePage extends DriverUtility{
 	}
 
 	public void initialize(){
-		PageFactory.initElements(DriverUtility.getWebDriver(), this);;
+		PageFactory.initElements(DriverUtility.getWebDriver(), this);
 	}
 	
 	public WebElement getApplicationLogo(){

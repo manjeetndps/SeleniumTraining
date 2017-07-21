@@ -23,6 +23,7 @@ public class DriverUtility {
 	public static WebDriver browserLanch(String browserType, String appURL) {
 
 		try {
+			
 			switch (browserType) {
 			case "FF":
 				driver = new FirefoxDriver();

@@ -5,6 +5,7 @@ import com.training.pageobjects.FramesAndWindowsPage;
 import com.training.pageobjects.HomePage;
 import com.training.pageobjects.RegistrationPage;
 import com.training.pageobjects.SignInPage;
+import com.training.pageobjects.WThreeSchoolPage;
 
 public class PageFactory {
 
@@ -27,5 +28,9 @@ public class PageFactory {
 	
 	public static RegistrationPage getRegistrationPage(){
 		return new RegistrationPage();
+	}
+	
+	public static WThreeSchoolPage getWThreeSchoolPage(){
+		return new WThreeSchoolPage();
 	}
 }

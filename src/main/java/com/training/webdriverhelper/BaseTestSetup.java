@@ -9,7 +9,6 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.PropertyConfigurator;
-import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -18,10 +17,9 @@ import org.testng.annotations.BeforeSuite;
 
 import com.training.constants.ConfigConstant;
 
-public class BaseTestSetup {
+public class BaseTestSetup extends DriverUtility{
 	
 	private static File file;
-	public static WebDriver driver;
 	public static Properties properties;
 	private static FileInputStream fileInput;
 	private static SimpleDateFormat dateFormat;
@@ -43,7 +41,7 @@ public class BaseTestSetup {
 	{
 		PropertyConfigurator.configure("log4j.properties");
 		configDataList = readConfigData();
-		driver = DriverUtility.browserLanch(configDataList.get(ConfigConstant.BROWSERTYPE).toString(), configDataList.get(ConfigConstant.APPURL).toString());
+		browserLanch(configDataList.get(ConfigConstant.BROWSERTYPE).toString(), configDataList.get(ConfigConstant.APPURL).toString());
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
