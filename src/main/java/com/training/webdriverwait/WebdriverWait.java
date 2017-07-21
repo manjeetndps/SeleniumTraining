@@ -1,3 +1,7 @@
+/**
+ * Author:- Manjeet Kumar
+ */
+
 package com.training.webdriverwait;
 
 import java.util.concurrent.TimeUnit;
@@ -7,6 +11,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -71,24 +76,39 @@ public class WebdriverWait extends DriverUtility{
 		}
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public void fluentWait() {
+		try
+		{
+		new FluentWait(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(10, TimeUnit.SECONDS)
+				.ignoring(Exception.class);
+		}
+		catch(Exception ex)
+		{
+			Assert.fail("Error occured while fluent Wait command. It seems element is not pooled or WebDriver has encounterred error!");
+		}
+		
+	}
+	
 	@SuppressWarnings("unused")
 	public static boolean isAlertPresent() {
 
-		  boolean presentFlag = false;
+		boolean presentFlag = false;
 
-		  try {
+		try {
 
-		   // Check the presence of alert
-		   Alert alert = driver.switchTo().alert();
-		   // Alert present; set the flag
-		   presentFlag = true;
+			// Check the presence of alert
+			Alert alert = driver.switchTo().alert();
+			
+			// Alert present; set the flag to true
+			presentFlag = true;
 
-		  } catch (NoAlertPresentException ex) {
-		   // Alert not present
-		   ex.printStackTrace();
-		  }
+		} catch (NoAlertPresentException ex) {
+			Assert.fail("Alert not present!");
+			ex.printStackTrace();
+		}
 
-		  return presentFlag;
+		return presentFlag;
 
-		 }
+	}
 }

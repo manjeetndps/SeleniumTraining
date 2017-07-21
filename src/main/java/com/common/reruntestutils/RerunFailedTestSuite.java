@@ -1,3 +1,6 @@
+/**
+ * Author:- Manjeet Kumar
+ */
 package com.common.reruntestutils;
 
 import java.io.File;
@@ -38,7 +41,7 @@ public class RerunFailedTestSuite extends BaseTestSetup {
 			// Create object of TestNG Class
 			runner = new TestNG();
 
-			// Create a list of String
+			// Create a list of String as runner.setTestSuites accepts list of strings.
 			suitefiles = new ArrayList<String>();
 
 			// Check if file exist and Add xml file which you have to execute

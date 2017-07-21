@@ -1,8 +1,17 @@
+/**
+ * Author:- Manjeet Kumar
+ */
+
 package com.training.constants;
 
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Fields should be updated as per Config.property file.
+ * @author manjeetku
+ *
+ */
 public class ConfigConstant {
 	
 	public static HashMap<String, List<String>> testCasesResutls = new HashMap<String, List<String>>();
