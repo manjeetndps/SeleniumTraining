@@ -1,12 +1,14 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class InputAlertHandler {
+public class AlertHandler {
 
 	private static WebDriver driver;
+	private static WebElement element;
 
 	public void launchWebPage() {
 
@@ -38,7 +40,7 @@ public class InputAlertHandler {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		InputAlertHandler alertHandler = new InputAlertHandler();
+		AlertHandler alertHandler = new AlertHandler();
 
 		alertHandler.launchWebPage();
 
@@ -47,15 +49,11 @@ public class InputAlertHandler {
 		driver.findElement(By.xpath("//a[text()='Alert']")).click();
 		Thread.sleep(3000);
 
-		driver.findElement(By.xpath("//a[contains(text(),'Input Alert')]")).click();
-
-		driver.switchTo()
-				.frame(driver.findElement(By.xpath("//div[@id='example-1-tab-2']/div/iframe[@class='demo-frame']")));
+		element = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
+		driver.switchTo().frame(element);
 		Thread.sleep(3000);
 
-		driver.findElement(By.xpath("//button[contains(text(),'demonstrate')]")).click();
-
-		driver.switchTo().alert().sendKeys("ManjeetKu");
+		driver.findElement(By.xpath("//button[contains(text(),'Click the button to display an alert box:')]")).click();
 		Thread.sleep(3000);
 
 		driver.switchTo().alert().accept();

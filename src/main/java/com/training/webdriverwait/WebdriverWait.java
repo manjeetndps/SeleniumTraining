@@ -77,7 +77,7 @@ public class WebdriverWait extends DriverUtility{
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void fluentWait() {
+	public static void fluentWait() {
 		try
 		{
 		new FluentWait(driver).withTimeout(30, TimeUnit.SECONDS).pollingEvery(10, TimeUnit.SECONDS)

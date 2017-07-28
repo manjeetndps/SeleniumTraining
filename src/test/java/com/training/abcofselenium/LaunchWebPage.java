@@ -21,6 +21,8 @@ public class LaunchWebPage {
 		LaunchWebPage action = new LaunchWebPage();
 
 		action.launchWebPage();
+		
+		System.out.println("Page title is->> " + driver.getTitle());
 
 		driver.close();
 	}

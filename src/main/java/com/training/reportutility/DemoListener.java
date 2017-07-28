@@ -99,6 +99,5 @@ public class DemoListener extends DriverUtility implements ITestListener, ISuite
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
 		// TODO Auto-generated method stub
-		
 	}
 }

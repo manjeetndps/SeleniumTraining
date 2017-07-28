@@ -35,7 +35,7 @@ public class HandlingAlertTest extends BaseTestSetup {
 		
 		dragAndDropPage.getAlertLink().click();
 		
-		element = FindElement.getElement(Identifier.xpath, DragAndDropPage.draggable_Frame);
+		element = FindElement.getElement(Identifier.xpath, dragAndDropPage.draggable_Frame);
 		
 		MouseAndKeyBoardActions.switchToFrame(element);
 		

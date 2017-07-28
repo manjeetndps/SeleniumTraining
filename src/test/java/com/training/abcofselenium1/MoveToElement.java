@@ -1,4 +1,4 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -6,14 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
 
-public class Frames_And_DragAndDrop {
+public class MoveToElement {
 
+	
 	private static WebDriver driver;
+	private static Actions action;
 	private static WebElement element;
-	private Actions action;
 
-	public void launchWebPage(){
-		
+	public void launchWebPage() {
+
 		driver = new FirefoxDriver();
 		action = new Actions(driver);
 
@@ -26,7 +27,7 @@ public class Frames_And_DragAndDrop {
 	 * Login Method
 	 * @throws InterruptedException
 	 */
-	private static void login() throws InterruptedException{
+	public void login() throws InterruptedException{
 		
 		
 		driver.findElement(By.xpath("//a[contains(text(),\"Signin\")]")).click();
@@ -38,36 +39,23 @@ public class Frames_And_DragAndDrop {
 		driver.findElement(By.xpath("//a[text()=\"Signup\"]/../../../../div/div/input[@value=\"Submit\"]")).click();
 		Thread.sleep(3000);
 	}
-	
+
 	public static void main(String[] args) throws InterruptedException {
 		
-		Frames_And_DragAndDrop dragAndDrop = new Frames_And_DragAndDrop();
-
-		dragAndDrop.launchWebPage();
+		MoveToElement doubleClick = new MoveToElement();
 		
-		login();
+		doubleClick.launchWebPage();
 		
-		driver.findElement(By.xpath("//a[text()='Interaction']")).click();
+		doubleClick.login();
+		
+		element = driver.findElement(By.xpath("//a[text()=\"Home\"]"));		
+		action.moveToElement(element).perform();
 		Thread.sleep(3000);
 		
-		driver.findElement(By.xpath("//a[text()='Droppable']")).click();
-		
-		element = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
-		
-		driver.switchTo().frame(element);
-		Thread.sleep(3000);	
-		
-		WebElement sourceElement = driver.findElement(By.xpath("//div[@id='draggable']/p"));
-		WebElement targetElement = driver.findElement(By.xpath("//div[@id='droppable']/p"));
-		
-		dragAndDrop.action.dragAndDrop(sourceElement, targetElement).perform();
-		Thread.sleep(3000);	
-		
-		driver.switchTo().defaultContent();
+		action.click().perform();
+		Thread.sleep(3000);
 		
 		driver.close();
-
 	}
-
 }
 

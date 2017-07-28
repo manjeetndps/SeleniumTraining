@@ -1,4 +1,4 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium2;
 
 import java.util.ArrayList;
 
@@ -78,7 +78,7 @@ public class WindowsHandling {
 		System.out.println(driver.getTitle());
 		Thread.sleep(3000);
 
-		driver.close();
+		driver.quit();
 
 	}
 

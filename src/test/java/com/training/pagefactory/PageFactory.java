@@ -6,6 +6,7 @@ import com.training.pageobjects.HomePage;
 import com.training.pageobjects.RegistrationPage;
 import com.training.pageobjects.SignInPage;
 import com.training.pageobjects.WThreeSchoolPage;
+import com.training.pageobjects.WidgetPage;
 
 public class PageFactory {
 
@@ -30,7 +31,7 @@ public class PageFactory {
 		return new RegistrationPage();
 	}
 	
-	public static WThreeSchoolPage getWThreeSchoolPage(){
-		return new WThreeSchoolPage();
+	public static WidgetPage getWidgetPage(){
+		return new WidgetPage();
 	}
 }

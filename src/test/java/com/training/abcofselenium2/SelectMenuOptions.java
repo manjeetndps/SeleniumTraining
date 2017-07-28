@@ -1,22 +1,21 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium2;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
-public class Keys_UP_Down {
+public class SelectMenuOptions {
 
 	private static WebDriver driver;
 	private static WebElement element;
-	private Actions action;
+	private static Select select;
 
-	public void launchWebPage(){
+	public static void launchWebPage(){
 		
 		driver = new FirefoxDriver();
-		action = new Actions(driver);
 
 		driver.get("http://way2automation.com/way2auto_jquery/index.php");
 
@@ -41,23 +40,43 @@ public class Keys_UP_Down {
 	}
 	
 	public static void main(String[] args) throws InterruptedException {
-		
-		Keys_UP_Down keyDownUp = new Keys_UP_Down();
 
-		keyDownUp.launchWebPage();
+		launchWebPage();
 		
 		login();
 		
-		driver.findElement(By.xpath("//a[text()='Registration']")).click();
+		driver.findElement(By.xpath("//a[text()='Dynamic Elements']")).click();
 		Thread.sleep(3000);
-		
-		element = driver.findElement(By.xpath("//label[contains(text(),'First Name')]/following-sibling::input"));
-		
-		keyDownUp.action.keyDown(element, Keys.SHIFT).sendKeys("manjeetkumar").keyUp(element, Keys.SHIFT).perform();
-		Thread.sleep(3000);
-		
-		driver.close();
 
+		driver.findElement(By.xpath("//a[text()='Dropdown']")).click();
+		Thread.sleep(3000);
+
+		element = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
+
+		driver.switchTo().frame(element);
+		Thread.sleep(3000);
+
+		WebElement element = driver.findElement(By.xpath("html/body/select"));
+		
+		selectOption(element, "India", StringUtils.EMPTY, true);
+		/*
+		select = new Select(element, );
+		select.selectByValue("India");*/
+		Thread.sleep(5000);
+		
+		//driver.quit();
+
+	}
+	
+	public static void selectOption(WebElement element, String value,  String text,boolean isByValue){
+		
+		select = new Select(element);
+		
+		if(isByValue){
+		select.selectByValue(value);
+		} else {
+			select.selectByVisibleText(text);
+		}
 	}
 
 }

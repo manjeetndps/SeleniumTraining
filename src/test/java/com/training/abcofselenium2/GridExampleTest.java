@@ -1,4 +1,4 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium2;
 
 import java.net.MalformedURLException;
 import java.net.URL;

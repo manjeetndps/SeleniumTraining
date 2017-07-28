@@ -34,7 +34,7 @@ public class HandleInputAlertTest extends BaseTestSetup {
 	
 	
 	@Test
-	public void verifyInputAlertAlert() {
+	public void verifyInputAlert() {
 		
 		dragAndDropPage.getAlertLink().click();
 		
@@ -42,17 +42,17 @@ public class HandleInputAlertTest extends BaseTestSetup {
 		
 		dragAndDropPage.getInputAlertLink().click();
 		
-		element = FindElement.getElement(Identifier.xpath, DragAndDropPage.draggable_Frame);
+		element = dragAndDropPage.getFrameElement(2);
 		
 		MouseAndKeyBoardActions.switchToFrame(element);
 		
-		element = FindElement.getElement(Identifier.xpath, DragAndDropPage.inputAlert);
+		element = FindElement.getElement(Identifier.xpath, dragAndDropPage.inputAlert);
 		
+		WebdriverWait.waitForElementPresent(element);
 		MouseAndKeyBoardActions.javaScriptClickElement(element, "inputAlert");
 		
 		MouseAndKeyBoardActions.switchToAlert(true, NAME_TO_BE_ENTERRED_IN_ALERT, true, false);
 		
 		Assert.assertTrue(dragAndDropPage.getInputAlertButton().isEnabled());
 	}
-
 }

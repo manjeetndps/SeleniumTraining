@@ -65,7 +65,9 @@ public class DriverUtility {
 
 				File ieDriver = new File("./lib/IEDriverServer.exe");
 				System.setProperty("webdriver.ie.driver", ieDriver.getAbsolutePath());
-				driver = new InternetExplorerDriver();
+				desiredCapabilities = DesiredCapabilities.internetExplorer();
+				desiredCapabilities.setCapability("requireWindowFocus", true);
+				driver = new InternetExplorerDriver(desiredCapabilities);
 
 				logger.info("Launching new instance of internet explorer web driver.");
 				break;

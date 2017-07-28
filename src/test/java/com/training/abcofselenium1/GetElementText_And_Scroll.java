@@ -1,18 +1,22 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium1;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 
-public class AlertHandler {
+public class GetElementText_And_Scroll {
 
 	private static WebDriver driver;
-	private static WebElement element;
+	private WebElement element;
+	private Actions action;
 
 	public void launchWebPage() {
 
 		driver = new FirefoxDriver();
+		action = new Actions(driver);
 
 		driver.get("http://way2automation.com/way2auto_jquery/index.php");
 
@@ -40,23 +44,27 @@ public class AlertHandler {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		AlertHandler alertHandler = new AlertHandler();
+		GetElementText_And_Scroll scroll = new GetElementText_And_Scroll();
 
-		alertHandler.launchWebPage();
+		scroll.launchWebPage();
 
 		login();
 
-		driver.findElement(By.xpath("//a[text()='Alert']")).click();
+		scroll.element = driver.findElement(By.xpath("//a[text()='Registration']"));
 		Thread.sleep(3000);
 
-		element = driver.findElement(By.xpath("//iframe[@class='demo-frame']"));
-		driver.switchTo().frame(element);
-		Thread.sleep(3000);
+		System.out.println(scroll.element.getText());
 
-		driver.findElement(By.xpath("//button[contains(text(),'Click the button to display an alert box:')]")).click();
-		Thread.sleep(3000);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		driver.switchTo().alert().accept();
+		scroll.element = driver.findElement(By.xpath("//img[@src='images/simple_alert.jpg']"));
+		jse.executeScript("arguments[0].scrollIntoView(true);", scroll.element);
+
+		scroll.action.moveToElement(scroll.element).perform();
+
+		// jse.executeScript("window.scrollBy(980,321.567)", "");
+
+		Thread.sleep(5000);
 
 		driver.close();
 

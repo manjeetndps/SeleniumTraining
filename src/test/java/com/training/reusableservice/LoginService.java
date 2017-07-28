@@ -3,6 +3,7 @@ package com.training.reusableservice;
 import com.training.pagefactory.PageFactory;
 import com.training.pageobjects.SignInPage;
 import com.training.webdriverhelper.BaseTestSetup;
+import com.training.webdriverwait.WebdriverWait;
 
 public class LoginService extends BaseTestSetup {
 
@@ -19,5 +20,7 @@ public class LoginService extends BaseTestSetup {
 		signInPage.enterPassword();
 
 		signInPage.clickSubmittButton();
+		
+		WebdriverWait.fluentWait();
 	}
 }

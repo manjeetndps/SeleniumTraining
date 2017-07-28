@@ -1,22 +1,16 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium1;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 
-public class GetElementText_And_Scroll {
+public class InputAlertHandler {
 
 	private static WebDriver driver;
-	private WebElement element;
-	private Actions action;
 
 	public void launchWebPage() {
 
 		driver = new FirefoxDriver();
-		action = new Actions(driver);
 
 		driver.get("http://way2automation.com/way2auto_jquery/index.php");
 
@@ -44,27 +38,27 @@ public class GetElementText_And_Scroll {
 
 	public static void main(String[] args) throws InterruptedException {
 
-		GetElementText_And_Scroll scroll = new GetElementText_And_Scroll();
+		InputAlertHandler alertHandler = new InputAlertHandler();
 
-		scroll.launchWebPage();
+		alertHandler.launchWebPage();
 
 		login();
 
-		scroll.element = driver.findElement(By.xpath("//a[text()='Registration']"));
+		driver.findElement(By.xpath("//a[text()='Alert']")).click();
 		Thread.sleep(3000);
 
-		System.out.println(scroll.element.getText());
+		driver.findElement(By.xpath("//a[contains(text(),'Input Alert')]")).click();
 
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		driver.switchTo()
+				.frame(driver.findElement(By.xpath("//div[@id='example-1-tab-2']/div/iframe[@class='demo-frame']")));
+		Thread.sleep(3000);
 
-		scroll.element = driver.findElement(By.xpath("//img[@src='images/simple_alert.jpg']"));
-		jse.executeScript("arguments[0].scrollIntoView(true);", scroll.element);
+		driver.findElement(By.xpath("//button[contains(text(),'demonstrate')]")).click();
 
-		scroll.action.moveToElement(scroll.element).perform();
+		driver.switchTo().alert().sendKeys("ManjeetKu");
+		Thread.sleep(3000);
 
-		// jse.executeScript("window.scrollBy(980,321.567)", "");
-
-		Thread.sleep(5000);
+		driver.switchTo().alert().accept();
 
 		driver.close();
 

@@ -1,6 +1,7 @@
 package com.training.basicseleniumscripts;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -9,6 +10,8 @@ import com.training.webdriverhelper.BaseTestSetup;
 
 public class DataProviderTest extends BaseTestSetup {
 
+	private WebElement element;
+	
 	@Test(dataProvider = "getData")
 	public void verifyLogin(String userName, String password) throws InterruptedException {
 
@@ -23,6 +26,10 @@ public class DataProviderTest extends BaseTestSetup {
 		driver.findElement(By.xpath("//a[text()=\"Signup\"]/../../../../div/div/input[@value=\"Submit\"]")).click();
 		Thread.sleep(3000);
 
+		element = driver.findElement(By.xpath("//i[@class='fa fa-skype']/.."));
+		
+		Assert.assertEquals(element.getText().trim(), "seleniumcoaching".trim());
+		
 		Assert.assertFalse(driver.getTitle().isEmpty());
 	}
 

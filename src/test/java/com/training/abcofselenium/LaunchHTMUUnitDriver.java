@@ -3,8 +3,6 @@ package com.training.abcofselenium;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import org.testng.Assert;
-
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 import com.gargoylesoftware.htmlunit.FailingHttpStatusCodeException;
 import com.gargoylesoftware.htmlunit.WebClient;
@@ -24,6 +22,7 @@ public class LaunchHTMUUnitDriver {
 		WebClient webClient;
 
 		webClient = new WebClient(BrowserVersion.FIREFOX_38);
+		webClient.getOptions().setThrowExceptionOnScriptError(false);
 
 		webPage = webClient.getPage("https://www.google.co.in/");
 
@@ -36,10 +35,6 @@ public class LaunchHTMUUnitDriver {
 		System.out.println(pageAfterLogin.getUrl().toString());
 
 		System.out.println("Page title is->> " + webPage.getTitleText());
-		Assert.assertEquals("Google", webPage.getTitleText(), "Actual and expected page title did not matched.");
-		
-		System.out.println("Actual and expected page titles matched.");
-
 	}
 
 }

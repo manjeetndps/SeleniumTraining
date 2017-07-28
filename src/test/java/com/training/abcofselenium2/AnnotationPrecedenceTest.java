@@ -1,4 +1,4 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium2;
 
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -54,7 +54,7 @@ public class AnnotationPrecedenceTest {
 
 	}
 
-	@BeforeSuite
+	@BeforeSuite(alwaysRun =false)
 	public void beforeSuite() {
 
 		System.out.println("Before Suite will always execute prior to all annotations or tests in the suite.");
@@ -68,14 +68,14 @@ public class AnnotationPrecedenceTest {
 
 	}
 
-	@Test
+	@Test(priority = 2 , description = "")
 	public void testCase1() {
 
 		System.out.println("This is my First Test Case ");
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void testCase2() {
 
 		System.out.println("This is my Second Test Case ");

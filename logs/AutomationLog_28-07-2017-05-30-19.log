@@ -1,0 +1,11 @@
+2017-07-28 17:30:19 INFO  BaseTestSetup:75 -  Browser Type ::FF
+2017-07-28 17:30:19 INFO  BaseTestSetup:76 -  App URL ::http://way2automation.com/way2auto_jquery/index.php
+2017-07-28 17:30:24 INFO  DriverUtility:35 - Launching new instance of firefox web driver.
+2017-07-28 17:30:26 INFO  MouseAndKeyBoardActions:56 - lnkSignIn Clicked Successfully
+2017-07-28 17:30:26 INFO  MouseAndKeyBoardActions:32 - manjeetku entered into the 'txtUserName' Text Box
+2017-07-28 17:30:26 INFO  MouseAndKeyBoardActions:32 - 8885522072 entered into the 'txtPassword' Text Box
+2017-07-28 17:30:27 INFO  MouseAndKeyBoardActions:56 - btnSubmitt Clicked Successfully
+2017-07-28 17:30:41 INFO  ReportUtils:95 - ######################################
+2017-07-28 17:30:41 INFO  ReportUtils:96 - verifyContextClick Status :: Pass
+2017-07-28 17:30:41 INFO  ReportUtils:97 - ######################################
+2017-07-28 17:30:41 INFO  BaseTestSetup:92 - Execution is completed. Closing the web driver now!

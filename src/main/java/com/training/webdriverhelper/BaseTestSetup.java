@@ -16,7 +16,8 @@ import org.apache.log4j.PropertyConfigurator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import com.training.constants.ConfigConstant;
@@ -40,13 +41,18 @@ public class BaseTestSetup extends DriverUtility{
 	
 	private static Logger logger = LoggerFactory.getLogger(BaseTestSetup.class);
 	
-	@BeforeSuite
-	public void startExecution()
+	@BeforeSuite(alwaysRun = true)
+	public void setUpConfig()
 	{
 		PropertyConfigurator.configure("log4j.properties");
 		configDataList = readConfigData();
+	}
+	
+	@BeforeClass(alwaysRun = true)
+	public void startExecution()
+	{		
 		browserLanch(configDataList.get(ConfigConstant.BROWSERTYPE).toString(), configDataList.get(ConfigConstant.APPURL).toString());
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);		
 	}
 
 	public static HashMap<Object, Object> readConfigData()
@@ -79,12 +85,13 @@ public class BaseTestSetup extends DriverUtility{
 		return configDataList;
 	}
 	
-	@AfterSuite(alwaysRun=true)
+	@AfterClass(alwaysRun=true)
 	public void tearDown()
 	{
 		if (driver != null){
 			logger.info("Execution is completed. Closing the web driver now!");
-			driver.close();
+			driver.manage().deleteAllCookies();
+			driver.quit();
 		}
 	}
 }

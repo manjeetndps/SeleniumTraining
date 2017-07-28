@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 
+import com.common.databuilder.ContextData;
 import com.training.webdriverhelper.FindElement;
 import com.training.webdriverwait.WebdriverWait;
 
@@ -155,7 +156,7 @@ public class MouseAndKeyBoardActions extends FindElement {
 	public static void mouserOver(WebElement element, String fieldName) {
 		try {
 			action = new Actions(driver);
-			action.moveToElement(element).build().perform();
+			action.moveToElement(element).perform();
 			logger.info("MouseOver on the '" + fieldName + "'");
 		} catch (Exception ex) {
 			Assert.fail("Error occured while mouse hovering on  '" + fieldName + "' " + ex.getMessage());
@@ -192,7 +193,7 @@ public class MouseAndKeyBoardActions extends FindElement {
 	public static void clickAndHold(WebElement element, String fieldName) {
 		try {
 			action = new Actions(driver);
-			action.clickAndHold(element).build().perform();
+			action.clickAndHold(element).perform();
 			logger.info("clickAndHold on the '" + fieldName + "'");
 		} catch (Exception ex) {
 			Assert.fail("Error occured while clicking and Holding on  '" + fieldName + "' " + ex.getMessage());
@@ -203,7 +204,7 @@ public class MouseAndKeyBoardActions extends FindElement {
 	public static void doubleClick(WebElement element, String fieldName) {
 		try {
 			action = new Actions(driver);
-			action.doubleClick(element).build().perform();
+			action.doubleClick(element).perform();
 			logger.info("doubleClick on the '" + fieldName + "'");
 		} catch (Exception ex) {
 			Assert.fail("Error occured while double clicking on  '" + fieldName + "' " + ex.getMessage());
@@ -214,7 +215,7 @@ public class MouseAndKeyBoardActions extends FindElement {
 	public static void release(WebElement element, String fieldName) {
 		try {
 			action = new Actions(driver);
-			action.release(element).build().perform();
+			action.release(element).perform();
 			logger.info("release on the '" + fieldName + "'");
 		} catch (Exception ex) {
 			Assert.fail(
@@ -223,10 +224,10 @@ public class MouseAndKeyBoardActions extends FindElement {
 
 	}
 
-	public static void dragAndDrop(WebElement sourceElement, WebElement targetElement, boolean isFrame) {
+	public static void dragAndDrop(WebElement sourceElement, WebElement targetElement) {
 		try {
 			action = new Actions(driver);
-			action.dragAndDrop(sourceElement, targetElement).build().perform();
+			action.dragAndDrop(sourceElement, targetElement).perform();
 			logger.info("Dragging  '" + sourceElement + "' and dropping on '" + targetElement + "'");
 		} catch (Exception ex) {
 			Assert.fail(
@@ -314,6 +315,35 @@ public class MouseAndKeyBoardActions extends FindElement {
 
 		catch (Exception ex) {
 			Assert.fail("Error occured while key press ::" + ex.getMessage());
+		}
+	}
+	
+	/**
+	 * This method is to context click i.e. right click on an element as well as hold and slide an element
+	 * @param data
+	 */
+	public static void contextSelect(ContextData data) {
+		action = new Actions(driver);
+		for (int i = 0; i < data.getnumberCount(); i++) {
+			if ((data.getKey() == Keys.ARROW_DOWN) || (data.getKey() == Keys.ARROW_UP)
+					|| (data.getKey() == Keys.ARROW_LEFT) || (data.getKey() == Keys.ARROW_RIGHT)) {
+
+				if (data.isContextClick()) {
+					action.contextClick(data.getElement()).perform();
+					action.sendKeys(data.getKey()).perform();
+				} else if (data.isSlider()) {
+					action.clickAndHold(data.getElement()).perform();
+					action.sendKeys(data.getKey()).perform();
+				}
+			}
+		}
+		if (data.isDoPressEnter()) {
+			action.sendKeys(Keys.ENTER).perform();
+		} else if (data.isDoPressReturn()) {
+			action.sendKeys(Keys.RETURN).perform();
+		} else {
+			action.release(data.getElement()).perform();
+			logger.info("User don't want to click on Enter key.Clickmay not be required!");
 		}
 	}
 }

@@ -45,12 +45,9 @@ public class ContextClick {
 		contextClick.launchWebPage();
 		
 		login();
-		
-		driver.findElement(By.xpath("//a[text()='Registration']")).click();
-		Thread.sleep(3000);
-		
+				
 		action.contextClick(driver.findElement(By.xpath("//a[text()='Registration']"))).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.RETURN).perform();
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		
 		driver.quit();
 

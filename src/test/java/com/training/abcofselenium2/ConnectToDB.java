@@ -1,4 +1,4 @@
-package com.training.abcofselenium;
+package com.training.abcofselenium2;
 
 import java.io.IOException;
 import java.sql.Connection;
