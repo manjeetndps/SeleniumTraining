@@ -37,11 +37,12 @@ public class DragAndDropTest extends BaseTestSetup {
 		widgetPage = PageFactory.getWidgetPage();
 		dragAndDropPage = PageFactory.getDragAndDropPage();
 		framesAndWindowsPage = PageFactory.getFramesAndWindowsPage();
+		
+		LoginService.login();
 	}
 
-	// @Test()
+	@Test()
 	public void verifyFrame_DragAndDrop_Elements() {
-		LoginService.login();
 
 		dragAndDropPage.clickInteractionLink();
 		WebdriverWait.waitForElementPresent(dragAndDropPage.getDroppableLInk());
@@ -62,7 +63,7 @@ public class DragAndDropTest extends BaseTestSetup {
 		Assert.assertTrue(element.isDisplayed());
 	}
 
-	@Test()
+	//@Test(invocationCount = 1 , invocationTimeOut = 3000)
 	public void verifyContextClick() throws InterruptedException {
 		LoginService.login();
 

@@ -51,6 +51,6 @@ public class SignInPage extends BasePage {
 	
 	public void clickSubmittButton()
 	{
-		MouseAndKeyBoardActions.clickElement(btnSubmitt, "btnSubmitt");
+		MouseAndKeyBoardActions.javaScriptClickElement(btnSubmitt, "btnSubmitt");
 	}
 }
